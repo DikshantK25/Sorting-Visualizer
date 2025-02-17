@@ -1,71 +1,88 @@
 
 # Sorting Visualizer
 
-A web-based sorting visualizer that demonstrates multiple sorting algorithms in real-time using HTML, CSS, and JavaScript. This project allows you to generate a random array and visualize the process of sorting it with various algorithms. It also includes features to pause and resume the sorting process and displays the current status.
+A web-based sorting visualizer that demonstrates various sorting algorithms in action using HTML, CSS, and JavaScript. The project features animated, color-coded visualizations along with pause/resume functionality to help you understand how different sorting algorithms work.
 
 ## Features
 
-- **Interactive Visualization:** Watch the sorting algorithms in action with animated bars.
 - **Multiple Sorting Algorithms:**
   - Bubble Sort
   - Insertion Sort
   - Selection Sort
   - Quick Sort
   - Merge Sort
-- **Control Panel:** 
-  - Generate a new random array.
-  - Start a specific sorting algorithm.
-  - Pause and resume the sorting process.
-- **Status Display:** See which sorting algorithm is currently running.
+
+- **Color-Coded Visualization:**
+  - **Default Elements:** Cyan
+  - **Comparisons:** Red
+  - **Key/Selected Elements:** Yellow
+  - **Pivot (Quick Sort):** Purple
+  - **Merge (Left Subarray):** Orange
+  - **Merge (Right Subarray):** Pink
+  - **Sorted/Final:** Green
+
+- **Interactive Controls:**
+  - **Generate New Array:** Create a random array of bars.
+  - **Sorting Buttons:** Start any of the included sorting algorithms.
+  - **Pause/Resume:** Control the sorting process.
+  - **Status Display:** View the current state of the sorting process.
 
 ## Project Structure
 
 ```
 sorting-visualizer/
-│── index.html    # Main HTML file
-│── style.css     # Styling for the project
-│── script.js     # JavaScript code with sorting algorithms and visualization logic
+├── index.html    # Main HTML file with controls and container for visualization
+├── style.css     # CSS styling for the visualizer
+└── script.js     # JavaScript logic for array generation, sorting algorithms, and animations
 ```
 
-## How to Run
+## How to Use
 
-1. **Clone or Download the Repository:**
+1. **Clone the Repository:**
+
    ```bash
-   git clone https://github.com/yourusername/sorting-visualizer.git
+   git clone https://github.com/YourUsername/Sorting-Visualizer.git
+   cd Sorting-Visualizer
    ```
-2. **Navigate to the Project Folder:**
+
+2. **Open the Application:**
+
+   - Open `index.html` directly in your web browser, or
+   - Use a local server (e.g., [VSCode Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)) for a better experience.
+
+3. **Using the Controls:**
+
+   - Click **Generate New Array** to create a new set of random bars.
+   - Click on one of the sorting algorithm buttons (e.g., **Bubble Sort**, **Quick Sort**, etc.) to start the visualization.
+   - Use the **Pause** button to pause the current sorting process.
+   - Use the **Resume** button to continue the sorting process.
+   - The **Status** display will update to show which algorithm is running or when sorting is complete.
+
+## Customization
+
+Feel free to modify the colors, delays, or any aspect of the sorting algorithms in `script.js`:
+- The color variables (default, compare, key, pivot, etc.) are defined at the top of `script.js` for easy customization.
+- Delay intervals can be adjusted to speed up or slow down the visualization.
+
+## Deployment
+
+Since this is a static project, you can deploy it on any static hosting platform such as GitHub Pages, Vercel, or Netlify.
+
+### Deploying on Vercel
+
+1. **Install Vercel CLI (if not already installed):**
+
    ```bash
-   cd sorting-visualizer
+   npm install -g vercel
    ```
-3. **Open the Application:**
-   - Open `index.html` in your favorite web browser.
-   - Alternatively, you can use a local server (like VSCode's Live Server extension) for a better experience.
 
-4. **Use the Controls:**
-   - Click **Generate New Array** to create a fresh set of random bars.
-   - Click any sorting algorithm button (e.g., **Bubble Sort**, **Merge Sort**) to start the visualization.
-   - Use the **Pause** and **Resume** buttons to control the sorting process.
-   - The current sorting status will be displayed under the controls.
+2. **Deploy the Project:**
 
-## Technologies Used
+   ```bash
+   vercel
+   ```
 
-- **HTML5:** Structure of the webpage.
-- **CSS3:** Styling and animations for the visualizer.
-- **JavaScript:** Sorting algorithms and dynamic visual effects.
-
-## Sorting Algorithms Visualized
-
-- **Bubble Sort:** Repeatedly compares and swaps adjacent elements.
-- **Insertion Sort:** Builds a sorted portion of the array one element at a time.
-- **Selection Sort:** Selects the minimum element from the unsorted portion and swaps it with the beginning.
-- **Quick Sort:** Uses a pivot element to partition the array and recursively sort the partitions.
-- **Merge Sort:** Recursively divides the array and merges sorted halves.
-
-## Future Enhancements
-
-- Add more sorting algorithms like Heap Sort, Counting Sort, and Radix Sort.
-- Improve the UI with more detailed visual cues and additional customization options.
-- Optimize the pause/resume functionality for a smoother experience.
+   Follow the prompts to deploy your project.
 
 ## License
 
@@ -73,10 +90,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
-- Inspired by various online sorting visualizations and educational resources.
-- Thanks to the open source community for providing tools and libraries that make projects like this possible.
+- This project was built for educational purposes to help visualize how sorting algorithms work.
+- Inspired by various online sorting visualizer projects and educational resources.
 ```
 
----
-
-Feel free to modify the content to better fit your project's details or add any additional sections as needed. Enjoy coding and happy sorting!
+Feel free to adjust the content to better match your project details or add any additional sections you need. Enjoy coding and happy sorting!
