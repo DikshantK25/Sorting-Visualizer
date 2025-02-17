@@ -34,6 +34,13 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// Helper function to wait while paused
+async function checkPause() {
+  while (isPaused) {
+    await delay(100);
+  }
+}
+
 // Swap function for animations
 async function swapBars(bars, i, j) {
   await delay(100);
@@ -50,10 +57,8 @@ function pauseSorting() {
 
 function resumeSorting() {
   isPaused = false;
-  statusText.innerText = "Status: Resuming " + currentSorting.name;
-  if (currentSorting) {
-    currentSorting();
-  }
+  statusText.innerText = "Status: Resuming " + (currentSorting.name || "sort");
+  // currentSorting will continue naturally since we use checkPause() in loops
 }
 
 // Start sorting based on button click
@@ -87,7 +92,7 @@ async function bubbleSort() {
   let bars = document.querySelectorAll(".bar");
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
-      if (isPaused) return;
+      await checkPause();
       // Highlight bars being compared
       bars[j].style.backgroundColor = compareColor;
       bars[j + 1].style.backgroundColor = compareColor;
@@ -104,20 +109,22 @@ async function bubbleSort() {
     bars[arr.length - 1 - i].style.backgroundColor = sortedColor;
   }
   statusText.innerText = "Status: Bubble Sort Completed";
-  document.querySelectorAll(".bar").forEach((bar) => (bar.style.backgroundColor = sortedColor));
+  document
+    .querySelectorAll(".bar")
+    .forEach((bar) => (bar.style.backgroundColor = sortedColor));
 }
 
 // Insertion Sort
 async function insertionSort() {
   let bars = document.querySelectorAll(".bar");
   for (let i = 1; i < arr.length; i++) {
-    if (isPaused) return;
+    await checkPause();
     let key = arr[i];
     // Mark key element in yellow
     bars[i].style.backgroundColor = keyColor;
     let j = i - 1;
     while (j >= 0 && arr[j] > key) {
-      if (isPaused) return;
+      await checkPause();
       // Highlight element being compared
       bars[j].style.backgroundColor = compareColor;
       await delay(100);
@@ -132,19 +139,21 @@ async function insertionSort() {
     await delay(100);
   }
   statusText.innerText = "Status: Insertion Sort Completed";
-  document.querySelectorAll(".bar").forEach((bar) => (bar.style.backgroundColor = sortedColor));
+  document
+    .querySelectorAll(".bar")
+    .forEach((bar) => (bar.style.backgroundColor = sortedColor));
 }
 
 // Selection Sort
 async function selectionSort() {
   let bars = document.querySelectorAll(".bar");
   for (let i = 0; i < arr.length - 1; i++) {
-    if (isPaused) return;
+    await checkPause();
     let minIndex = i;
     // Mark the candidate minimum in yellow
     bars[minIndex].style.backgroundColor = keyColor;
     for (let j = i + 1; j < arr.length; j++) {
-      if (isPaused) return;
+      await checkPause();
       bars[j].style.backgroundColor = compareColor;
       await delay(100);
       if (arr[j] < arr[minIndex]) {
@@ -161,19 +170,24 @@ async function selectionSort() {
     bars[i].style.backgroundColor = sortedColor;
   }
   statusText.innerText = "Status: Selection Sort Completed";
-  document.querySelectorAll(".bar").forEach((bar) => (bar.style.backgroundColor = sortedColor));
+  document
+    .querySelectorAll(".bar")
+    .forEach((bar) => (bar.style.backgroundColor = sortedColor));
 }
 
 // Quick Sort and its partition helper
 async function quickSort(start, end) {
-  if (start < end && !isPaused) {
+  await checkPause();
+  if (start < end) {
     let pi = await partition(start, end);
     await quickSort(start, pi - 1);
     await quickSort(pi + 1, end);
   }
   if (start === 0 && end === arr.length - 1) {
     statusText.innerText = "Status: Quick Sort Completed";
-    document.querySelectorAll(".bar").forEach((bar) => (bar.style.backgroundColor = sortedColor));
+    document
+      .querySelectorAll(".bar")
+      .forEach((bar) => (bar.style.backgroundColor = sortedColor));
   }
 }
 
@@ -184,7 +198,7 @@ async function partition(start, end) {
   bars[end].style.backgroundColor = pivotColor;
   let i = start - 1;
   for (let j = start; j < end; j++) {
-    if (isPaused) return;
+    await checkPause();
     bars[j].style.backgroundColor = compareColor;
     await delay(100);
     if (arr[j] < pivot) {
@@ -202,14 +216,17 @@ async function partition(start, end) {
 
 // Merge Sort and its merge helper
 async function mergeSort(start, end) {
-  if (start >= end || isPaused) return;
+  await checkPause();
+  if (start >= end) return;
   let mid = Math.floor((start + end) / 2);
   await mergeSort(start, mid);
   await mergeSort(mid + 1, end);
   await merge(start, mid, end);
   if (start === 0 && end === arr.length - 1) {
     statusText.innerText = "Status: Merge Sort Completed";
-    document.querySelectorAll(".bar").forEach((bar) => (bar.style.backgroundColor = sortedColor));
+    document
+      .querySelectorAll(".bar")
+      .forEach((bar) => (bar.style.backgroundColor = sortedColor));
   }
 }
 
@@ -218,8 +235,8 @@ async function merge(start, mid, end) {
   let leftArr = arr.slice(start, mid + 1);
   let rightArr = arr.slice(mid + 1, end + 1);
   let leftIndex = 0,
-      rightIndex = 0,
-      k = start;
+    rightIndex = 0,
+    k = start;
 
   // Color left and right parts for clarity
   for (let i = start; i <= mid; i++) {
@@ -228,11 +245,11 @@ async function merge(start, mid, end) {
   for (let i = mid + 1; i <= end; i++) {
     bars[i].style.backgroundColor = mergeColorRight;
   }
-  
+
   await delay(100);
-  
+
   while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
-    if (isPaused) return;
+    await checkPause();
     if (leftArr[leftIndex] <= rightArr[rightIndex]) {
       arr[k] = leftArr[leftIndex];
       bars[k].style.height = leftArr[leftIndex] + "px";
@@ -248,7 +265,7 @@ async function merge(start, mid, end) {
     await delay(100);
   }
   while (leftIndex < leftArr.length) {
-    if (isPaused) return;
+    await checkPause();
     arr[k] = leftArr[leftIndex];
     bars[k].style.height = leftArr[leftIndex] + "px";
     bars[k].style.backgroundColor = defaultColor;
@@ -257,7 +274,7 @@ async function merge(start, mid, end) {
     await delay(100);
   }
   while (rightIndex < rightArr.length) {
-    if (isPaused) return;
+    await checkPause();
     arr[k] = rightArr[rightIndex];
     bars[k].style.height = rightArr[rightIndex] + "px";
     bars[k].style.backgroundColor = defaultColor;
