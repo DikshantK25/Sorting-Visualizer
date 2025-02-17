@@ -3,6 +3,14 @@
 
 A web-based sorting visualizer that demonstrates various sorting algorithms in action using HTML, CSS, and JavaScript. The project features animated, color-coded visualizations along with pause/resume functionality to help you understand how different sorting algorithms work.
 
+## Live Demo
+
+Check out the live demo: [Sorting Visualizer Live](https://sorting-visualizer-weld-eta.vercel.app/)
+
+## Screenshot
+
+![Screenshot 2025-02-17 102050](https://github.com/user-attachments/assets/252aa96c-a0f9-4f20-865a-a22b40c0411a)
+
 ## Features
 
 - **Multiple Sorting Algorithms:**
@@ -54,19 +62,17 @@ sorting-visualizer/
 
    - Click **Generate New Array** to create a new set of random bars.
    - Click on one of the sorting algorithm buttons (e.g., **Bubble Sort**, **Quick Sort**, etc.) to start the visualization.
-   - Use the **Pause** button to pause the current sorting process.
-   - Use the **Resume** button to continue the sorting process.
+   - Use the **Pause** and **Resume** buttons to control the sorting process.
    - The **Status** display will update to show which algorithm is running or when sorting is complete.
 
 ## Customization
 
-Feel free to modify the colors, delays, or any aspect of the sorting algorithms in `script.js`:
+- You can modify the colors, delay intervals, or any part of the sorting algorithms in `script.js`.
 - The color variables (default, compare, key, pivot, etc.) are defined at the top of `script.js` for easy customization.
-- Delay intervals can be adjusted to speed up or slow down the visualization.
 
 ## Deployment
 
-Since this is a static project, you can deploy it on any static hosting platform such as GitHub Pages, Vercel, or Netlify.
+This is a static project, so you can deploy it on any static hosting platform such as GitHub Pages, Vercel, or Netlify.
 
 ### Deploying on Vercel
 
@@ -94,4 +100,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - Inspired by various online sorting visualizer projects and educational resources.
 ```
 
-Feel free to adjust the content to better match your project details or add any additional sections you need. Enjoy coding and happy sorting!
+---
+
+Feel free to modify or expand the README as needed. Enjoy your Sorting Visualizer project!
